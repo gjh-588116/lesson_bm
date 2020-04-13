@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .container{
+        width: 200px;
+        height: 600px;
+        overflow: scroll;
+         border: 1px solid black;
+    }
+    /* 子元素 要在这个200px *600px 范围之外 */
+    .target{
+        margin-top: 900px;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="target"></div>
+    </div>
+    <script>
+    // target 是在 container 之内滚动的， container是 root
+    // 属性 
+    const target =document.querySelector('.targer')
+    let observer = new IntersectionObserver(function(nodes){
+        nodes.forEach(function(node){
+            // console.log(node);
+            if(node.isIntersecting){
+                console.log('已经出现了');
+            }
+        })
+    },{
+        threshold:[]
+    })
+    // 开始观察
+    // 如果出现在视窗之内，它会通知我？？？用回调函数
+    observer.observe(target);
+    </script>
+</body>
+</html>
