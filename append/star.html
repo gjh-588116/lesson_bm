@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 状态  语义化html     -->
+  <div class="wrapper">
+    <!-- <button class="like-btn">
+      <span class="like-text">点赞</span>
+    </button> -->
+  </div>
+  <script>
+//   const button = document.querySelector('.like-btn');
+//   const buttonText = document.querySelector('.like-text');
+//   let isLiked = false;  // 点 
+//   button.addEventListener('click', () => {
+//     isLiked = !isLiked;
+//     isLiked ? buttonText.innerHTML = '取消' :buttonText.innerHTML = '点赞'
+//   }, false)
+// 封装
+class LikeButton {
+    constructor(){
+        this.state = { isLiked:false}
+    }
+    reader(){
+        return `
+        <button class="like-btn">
+        <span class="like-text">点赞</span>
+        </button>
+    `
+    }
+}
+const wrapper = document.querySelector('.wrapper');
+const LikeButton = new LikeButton();
+wrapper.innerHTML = LikeButton.reader();
+// 复用
+const LikeButton2 = new LikeButton();
+wrapper.innerHTML = LikeButton2.reader();
+</script>
+</body>
+</html>
