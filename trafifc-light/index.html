@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        li{
+            width: 100px;
+            height: 100px;
+            background-color: #666;
+            margin-top: 100px;
+            border-radius: 50%;
+        }
+        ul.stop li:nth-child(1){
+            background-color: red;
+        }
+        ul.warn li:nth-child(2){
+            background-color:yellow;
+        }
+        ul.pass li:nth-child(3){
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        const ul = document.querySelector('ul');
+        // setTimeout(function(){
+        //     ul.className = 'stop';
+        //     setTimeout(function(){
+        //         ul.className = 'warn';
+        //         setTimeout(function(){
+        //             ul.className = 'pass';
+        //         },1000)
+        //     },1000)
+        // },1000)
+
+
+        setInterval(()=>{
+            light();
+        },3000)
+        light();
+        // new Promise(function(resolve,reject){
+        //     setTimeout(() => {
+        //         resolve();  
+        //         // 成功  fulfilled
+        //         // 失败  rejected
+        //         // 处理中 pending
+        //         // 
+        //         // 1: 默认pending ->如果调用resolve fulfilled(成功)
+        //         // 2: 默认pending ->如果调用reject  rejected(失败)
+        //     }, 1000)
+        // })
+        // 1s p fulfilled
+        // p指向的都是 同一个promise 1s fukfilled then 没有等待1s的效果，立即执行
+        // fulfilled
+        // p函数 p每调用一次 都会返回不同的promise 每调用一次 都会new一个全新的promise
+    function light(){
+        let p =function(){
+            return new Promise(function(resolve,reject){
+                setTimeout(() =>{
+                    resolve();
+                },1000);
+            })
+        }
+        p().then(function(){
+            // 1th 灯 
+            ul.className = 'stop';
+            // 2th 灯 1s
+            // 涉及到promise then 用法
+            // 1: 返回一个Promise 那么 还可以在后面
+            // 链式调用 then 后面的 then 也会等待着这个Promise 看它结果是成功还是失败
+            return p();
+        })
+        .then(function(){
+            ul.className = 'warn';
+            return p()
+        })
+        .then(function(){
+            ul.className = 'pass';
+            return p()
+        })
+    }
+        
+        // .then 串行的结构
+        // callback 嵌套
+        // rejected
+        p().catch()
+    </script>
+</body>
+</html>
