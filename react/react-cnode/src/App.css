@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.comment {
+  background-color: #f3f3f3;
+  display: flex;
+  /* display: inline-flex; */
+  line-height: 20px;
+  /* margin: 10px auto; */
+}
+
+.comment-input {
+  display: flex;
+  /* background: green; */
+}
+
+.hight-light {
+  /* color: red; */
+  background: green;
+  /* font-size: 20px; */
+  /* padding: 10px; */
+  /* background-color: #f6f6f6; */
+  /* border-radius: 3px 3px 0 0; */
+}
+.data-tab{
+  display: flex;
+}
