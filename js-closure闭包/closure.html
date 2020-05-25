@@ -2,12 +2,19 @@
     var name1 = 'lilei';
     function test(){
         var name = 'lihua';
+        var a = 0;
         function test1(){
-            var name2 = 'ligang';
-            debugger;
+            var name2 = 'licheng';
+            debugger; //断点
+            // 访问了 另外一个函数作用域里面的变量才会形成闭包
             console.log(name);
+            return a++;
         }
+        // 返回的是一个函数
         return test1;
     }
-    test ()()
+    var fn = test();
+    console.log(fn()); // 进行操作时调用的值会改变，闭包的值也会改变。
+    console.log(fn());
+    console.log(fn());
 </script>
