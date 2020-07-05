@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 200px;height: 200px;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <script>
+      //   first
+      const box = document.querySelector('#box');
+      const first = box.getBoundingClientRect();
+      // css信息变化  
+      box.style.width = '400px';
+      box.style.height = '400px';
+      //   last
+      const last = box.getBoundingClientRect();
+      // {
+      //   top: 400,
+      //   left: 100,
+      //   width: 200,
+      //   height: 200,
+      //   ...
+      // }
+      // invert 算出前后偏移量  
+      let diffW = first.width /last.width;
+      let diffH = first.height / last.height;
+      console.log(diffW ,diffH);
+      // play 
+      // 因为上面这一步 设置 width height 是瞬间完成的
+      // 加点过渡效果
+      // 1. 翻转回去，缩小scale(0.5)
+      // 2. 慢慢恢复为 scale(1)  
+      box.animate([
+          {
+              transform: `scale(${diffW})`,
+          },
+          {
+            transform: `scale(1)`,
+          }
+        ],{
+            duration: 3000,
+            easing: 'ease-in-out'
+        })
+  </script>
+</body>
+</html>
